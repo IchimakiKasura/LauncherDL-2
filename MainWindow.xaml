@@ -1,0 +1,676 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window
+	x:Class="launcherDL.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:launcherDL"
+	mc:Ignorable="d"
+	Title="Launcher DL (build ver5.0)"
+	Width="450"
+	Icon="img/meg.ico"
+	ResizeMode="NoResize"
+	WindowStartupLocation="CenterScreen"
+	VerticalAlignment="Center"
+	HorizontalAlignment="Center"
+	FontFamily="Noto Sans JP"
+	Height="643"
+	Closing="On_Close"
+	BorderBrush="#FF0000FF" xmlns:Controls0="clr-namespace:System.Reflection;assembly=mscorlib">
+	<Window.Resources>
+		<Style
+			x:Key="MyButtonStyle"
+			TargetType="Button">
+			<Setter
+				Property="OverridesDefaultStyle"
+				Value="True" />
+			<Setter
+				Property="Margin"
+				Value="5" />
+			<Setter
+				Property="Template">
+				<Setter.Value>
+					<ControlTemplate
+						TargetType="Button">
+						<Border
+							Name="border"
+							BorderThickness="1"
+							Padding="4,2"
+							CornerRadius="3"
+							Background="{TemplateBinding Background}">
+							<ContentPresenter
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center" />
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger
+								Property="IsMouseOver"
+								Value="True"></Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style
+			TargetType="Border"
+			x:Key="RoundMe">
+			<Setter
+				Property="CornerRadius"
+				Value="7" />
+		</Style>
+	</Window.Resources>
+	<Window.Background>
+		<LinearGradientBrush
+			StartPoint="0.5,1"
+			EndPoint="0.5,0">
+			<LinearGradientBrush.GradientStops>
+				<GradientStop
+					Color="#FF000000"
+					Offset="0" />
+				<GradientStop
+					Color="#FFFFFFFF"
+					Offset="1" />
+			</LinearGradientBrush.GradientStops>
+		</LinearGradientBrush>
+	</Window.Background>
+	<Grid
+		HorizontalAlignment="Center"
+		VerticalAlignment="Center"
+		Width="450"
+		Height="614.8"
+		Focusable="True">
+		<Grid.Background>
+			<ImageBrush
+				ImageSource="C:\Users\Administrator\Desktop\programming stuff\c# projects\launcher DL\img\bg.png"
+				Stretch="Fill" />
+		</Grid.Background>
+		<ComboBox
+			x:Name="ComboBox_FormatType"
+			FontSize="18"
+			FontWeight="Bold"
+			VerticalContentAlignment="Center"
+			HorizontalContentAlignment="Center"
+			SelectionChanged="ComboBox_FormatType_Changed"
+			ToolTip="Select a Type format"
+			SelectedIndex="-1"
+			Height="35"
+			Width="150"
+			Margin="0,50,0,0"
+			VerticalAlignment="Top"
+			HorizontalAlignment="Center"
+			Grid.Row="0"
+			Grid.Column="0">
+			<ComboBoxItem
+				Content="Custom"
+				ToolTip="Customize settings before downloading."
+				Cursor="Hand"
+				x:Name="ComboBox_Label_Custom" />
+			<ComboBoxItem
+				Content="Video"
+				Cursor="Hand"
+				x:Name="ComboBox_Label_Video"
+				ToolTip="Download the Video's &quot;best&quot; format." />
+			<ComboBoxItem
+				Content="Audio"
+				Cursor="Hand"
+				x:Name="ComboBox_Label_Audio"
+				ToolTip="Download the Audio's &quot;best&quot; format." />
+		</ComboBox>
+		<CheckBox
+			x:Name="CheckBox_MP3"
+			Content="Prefer MP3 Format"
+			FontWeight="Bold"
+			ToolTipService.InitialShowDelay="5000"
+			IsChecked="False"
+			Click="CheckBox_MP3_Event"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Top"
+			Margin="0,93,0,0"
+			Width="130"
+			Height="16"
+			ToolTip="Of course you read it.&#xA;It just convert that m4a file into mp3" />
+		<TextBox
+			x:Name="Input_Link"
+			HorizontalContentAlignment="Center"
+			TextWrapping="NoWrap"
+			FontSize="22"
+			FontWeight="Bold"
+			Cursor="IBeam"
+			GotFocus="Input_GotFocus"
+			LostFocus="Input_LostFocus"
+			BorderBrush="#FF0043FF"
+			Opacity="1"
+			Background="#AA000000"
+			SelectionTextBrush="#FFFFFFFF"
+			SelectionBrush="#50FF6BDA"
+			BorderThickness="1.5,1.5,1.5,1.7"
+			Foreground="#FFFFFFFF"
+			SelectionOpacity="30"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Top"
+			Margin="0,155,16,0"
+			Width="420"
+			Height="35"
+			PreviewDrop="Input_OnDrag_Link"
+			TextChanged="Input_Link_Check">
+			<TextBox.Resources>
+				<Style
+					TargetType="Border"
+					BasedOn="{StaticResource RoundMe}" />
+			</TextBox.Resources>
+		</TextBox>
+		<TextBox
+			x:Name="Input_Name"
+			HorizontalContentAlignment="Center"
+			TextWrapping="NoWrap"
+			FontSize="22"
+			FontWeight="Bold"
+			Cursor="IBeam"
+			GotFocus="Input_GotFocus"
+			LostFocus="Input_LostFocus"
+			OverridesDefaultStyle="False"
+			BorderBrush="#FF0043FF"
+			Foreground="#FFFFFFFF"
+			Opacity="1"
+			Background="#AA000000"
+			SelectionOpacity="1"
+			SelectionTextBrush="#FFFFFFFF"
+			SelectionBrush="#50FF6BDA"
+			BorderThickness="1.5,1.5,1.5,1.7"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="235,226,0,0"
+			Width="200"
+			Height="35"
+			PreviewDrop="Input_OnDrag_Name">
+			<TextBox.Resources>
+				<Style
+					TargetType="Border"
+					BasedOn="{StaticResource RoundMe}" />
+			</TextBox.Resources>
+		</TextBox>
+		<!-- buttons -->
+		<!-- FileFormat -->
+		<Button
+			x:Name="Button_FileFormat"
+			Cursor="Hand"
+			FontFamily="Noto Sans JP"
+			Content="ファイルフォーマット"
+			Style="{StaticResource MyButtonStyle}"
+			FontSize="19"
+			FontWeight="Black"
+			Foreground="#FF3885F7"
+			BorderBrush="#FF3885F7"
+			BorderThickness="1.5,1.5,1.5,1.7"
+			Click="fileFormat_Button"
+			MouseEnter="Input_MouseEnter"
+			MouseLeave="Input_MouseLeave"
+			Focusable="False"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="15,269,0,0"
+			Width="200"
+			Height="45"
+			ToolTip="What? see the list of Akira's ****??">
+			<Button.Resources>
+				<Style
+					TargetType="Border"
+					BasedOn="{StaticResource RoundMe}" />
+			</Button.Resources>
+			<Button.Background>
+				<ImageBrush
+					ViewportUnits="RelativeToBoundingBox"
+					ViewboxUnits="RelativeToBoundingBox"
+					Viewport="0,0,1,2.5"
+					Viewbox="0,0.25,1,1"
+					Stretch="Fill"
+					TileMode="None"
+					ToolTipService.BetweenShowDelay="5000"
+					Stylus.IsFlicksEnabled="True"
+					RenderOptions.EdgeMode="Unspecified"
+					RenderOptions.ClearTypeHint="Auto"
+					ImageSource="img/akira.png" />
+			</Button.Background>
+			<Button.Triggers>
+				<EventTrigger
+					RoutedEvent="Button.MouseEnter">
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetProperty="Width"
+								To="210"
+								Duration="00:00:00.1" />
+							<DoubleAnimation
+								Storyboard.TargetProperty="Height"
+								To="55"
+								Duration="00:00:00.1" />
+							<ThicknessAnimationUsingKeyFrames
+								Storyboard.TargetProperty="Margin">
+								<SplineThicknessKeyFrame
+									KeyTime="00:00:00.1"
+									Value="10,264,0,0" />
+							</ThicknessAnimationUsingKeyFrames>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger>
+				<EventTrigger
+					RoutedEvent="Button.MouseLeave">
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetProperty="Width"
+								To="200"
+								Duration="00:00:00.1" />
+							<DoubleAnimation
+								Storyboard.TargetProperty="Height"
+								To="45"
+								Duration="00:00:00.1" />
+							<ThicknessAnimationUsingKeyFrames
+								Storyboard.TargetProperty="Margin">
+								<SplineThicknessKeyFrame
+									KeyTime="00:00:00.1"
+									Value="15,269,0,0" />
+							</ThicknessAnimationUsingKeyFrames>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger>
+			</Button.Triggers>
+		</Button>
+		<!-- Download -->
+		<Button
+			Click="download_Button"
+			Content="ダウンロード"
+			FontFamily="Noto Sans JP"
+			FontSize="30"
+			FontWeight="Black"
+			IsCancel="False"
+			IsDefault="False"
+			Cursor="Hand"
+			x:Name="Button_Download"
+			Foreground="#FFE863A8"
+			BorderBrush="#FFE863A8"
+			BorderThickness="1.5,1.5,1.5,1.7"
+			Opacity="1"
+			MouseEnter="Input_MouseEnter"
+			MouseLeave="Input_MouseLeave"
+			Style="{StaticResource MyButtonStyle}"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Top"
+			Width="420"
+			Margin="0,322,0,0"
+			Height="57"
+			ToolTip="Download??? astoflo????????????">
+			<Button.Resources>
+				<Style
+					TargetType="Border"
+					BasedOn="{StaticResource RoundMe}" />
+			</Button.Resources>
+			<Button.Background>
+				<ImageBrush
+					ImageSource="img/asutorufo.jpeg"
+					ViewportUnits="RelativeToBoundingBox"
+					ViewboxUnits="RelativeToBoundingBox"
+					Viewport="0,0,1,2.5"
+					Viewbox="0,0.25,1,1"
+					Stretch="Fill"
+					TileMode="None"
+					ToolTipService.BetweenShowDelay="5000"
+					Stylus.IsFlicksEnabled="True"
+					RenderOptions.EdgeMode="Unspecified"
+					RenderOptions.ClearTypeHint="Auto" />
+			</Button.Background>
+			<Button.Triggers>
+				<EventTrigger
+					RoutedEvent="Button.MouseEnter">
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetProperty="Width"
+								To="430"
+								Duration="00:00:00.1" />
+							<DoubleAnimation
+								Storyboard.TargetProperty="Height"
+								To="62"
+								Duration="00:00:00.1" />
+							<ThicknessAnimationUsingKeyFrames
+								Storyboard.TargetProperty="Margin">
+								<SplineThicknessKeyFrame
+									KeyTime="00:00:00.1"
+									Value="0,319,0,0" />
+							</ThicknessAnimationUsingKeyFrames>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger>
+				<EventTrigger
+					RoutedEvent="Button.MouseLeave">
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetProperty="Width"
+								To="420"
+								Duration="00:00:00.1" />
+							<DoubleAnimation
+								Storyboard.TargetProperty="Height"
+								To="57"
+								Duration="00:00:00.1" />
+							<ThicknessAnimationUsingKeyFrames
+								Storyboard.TargetProperty="Margin">
+								<SplineThicknessKeyFrame
+									KeyTime="00:00:00.1"
+									Value="0,322,0,0" />
+							</ThicknessAnimationUsingKeyFrames>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger>
+			</Button.Triggers>
+		</Button>
+		<!-- Update -->
+		<Button
+			Cursor="Hand"
+			FontFamily="Noto Sans JP"
+			FontSize="25"
+			FontWeight="Black"
+			Content="アップデート"
+			Style="{StaticResource MyButtonStyle}"
+			x:Name="Button_Update"
+			Foreground="#FF0D918F"
+			BorderBrush="#FF0D918F"
+			BorderThickness="1.5,1.5,1.5,1.7"
+			Click="update_Button"
+			MouseEnter="Input_MouseEnter"
+			MouseLeave="Input_MouseLeave"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Top"
+			Height="45"
+			Margin="0,269,15,0"
+			Width="200"
+			ToolTip="hmm update venti?">
+			<Button.Resources>
+				<Style
+					TargetType="Border"
+					BasedOn="{StaticResource RoundMe}" />
+			</Button.Resources>
+			<Button.Background>
+				<ImageBrush
+					ViewportUnits="RelativeToBoundingBox"
+					ViewboxUnits="RelativeToBoundingBox"
+					Stretch="Fill"
+					TileMode="None"
+					ToolTipService.BetweenShowDelay="5000"
+					Stylus.IsFlicksEnabled="True"
+					RenderOptions.EdgeMode="Unspecified"
+					RenderOptions.ClearTypeHint="Auto"
+					ImageSource="img/venti.jpg"
+					Viewport="0,0,1,3.5"
+					Viewbox="0,0.3,1,1" />
+			</Button.Background>
+			<Button.Triggers>
+				<EventTrigger
+					RoutedEvent="Button.MouseEnter">
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetProperty="Width"
+								To="210"
+								Duration="00:00:00.1" />
+							<DoubleAnimation
+								Storyboard.TargetProperty="Height"
+								To="55"
+								Duration="00:00:00.1" />
+							<ThicknessAnimationUsingKeyFrames
+								Storyboard.TargetProperty="Margin">
+								<SplineThicknessKeyFrame
+									KeyTime="00:00:00.1"
+									Value="0,264,10,0" />
+							</ThicknessAnimationUsingKeyFrames>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger>
+				<EventTrigger
+					RoutedEvent="Button.MouseLeave">
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetProperty="Width"
+								To="200"
+								Duration="00:00:00.1" />
+							<DoubleAnimation
+								Storyboard.TargetProperty="Height"
+								To="45"
+								Duration="00:00:00.1" />
+							<ThicknessAnimationUsingKeyFrames
+								Storyboard.TargetProperty="Margin">
+								<SplineThicknessKeyFrame
+									KeyTime="00:00:00.1"
+									Value="0,269,15,0" />
+							</ThicknessAnimationUsingKeyFrames>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger>
+			</Button.Triggers>
+		</Button>
+		<ComboBox
+			Text="best"
+			IsEditable="True"
+			FontSize="19"
+			FontWeight="SemiBold"
+			BorderBrush="#FF0011FF"
+			Foreground="#FF000000"
+			Opacity="0.55"
+			BorderThickness="1.5,1.5,1.5,1.7"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Top"
+			Margin="0,226,235,0"
+			Width="200"
+			Height="35"
+			Background="#50FF6BDA"
+			x:Name="Input_FileFormat"></ComboBox>
+		<RichTextBox
+			FontFamily="Cascadia Code"
+			FontSize="19"
+			IsReadOnly="True"
+			AcceptsReturn="False"
+			x:Name="RichTextBox_Console"
+			Cursor="Arrow"
+			HorizontalScrollBarVisibility="Auto"
+			VerticalScrollBarVisibility="Hidden"
+			BorderBrush="#FF003BFF"
+			Foreground="#FFFFFFFF"
+			Opacity="1"
+			Background="#AA000000"
+			SelectionOpacity="1"
+			SelectionTextBrush="#FFFFFFFF"
+			SelectionBrush="#50FF6BDA"
+			BorderThickness="1.5,1.5,1.5,1.7"
+			AllowDrop="False"
+			Padding="0,-1,0,0"
+			ToolTip="Console"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch"
+			Margin="15,387,15,37"
+			Width="420"
+			Height="191"
+			AutoWordSelection="False">
+			<RichTextBox.Resources>
+				<Style
+					TargetType="Border"
+					BasedOn="{StaticResource RoundMe}" />
+			</RichTextBox.Resources>
+		</RichTextBox>
+		<Label
+			x:Name="Label_Copyright"
+			Foreground="#FFFFFFFF"
+			Content="Copyright © 2021 kasura"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Bottom"
+			Margin="15,0,0,0.200000000000045"
+			Width="155"
+			Height="29"
+			ToolTip="Like bruh whats this © thingy? isn't Just I made the CLI have a GUI?"
+			MouseDown="VersionInfo" />
+		<Label
+			Content="ファイルタイプ："
+			HorizontalContentAlignment="Center"
+			FontSize="15"
+			FontWeight="Bold"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Top"
+			Margin="0,20,0,0"
+			Width="130"
+			Height="30"
+			x:Name="Label_FileType"
+			ToolTip="File Type" />
+		<Label
+			HorizontalContentAlignment="Center"
+			FontWeight="Bold"
+			FontSize="23"
+			Content="リンク:"
+			TabIndex="2147483645"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="15,117,0,0"
+			Width="419"
+			Height="38"
+			x:Name="Label_Link"
+			ToolTip="link :D&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;bhaha" />
+		<Label
+			HorizontalContentAlignment="Center"
+			FontWeight="Bold"
+			FontSize="23"
+			Foreground="#FFFFFFFF"
+			Content="フォーマット:"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Stretch"
+			Margin="15,187,0,387"
+			Width="200"
+			Height="41"
+			x:Name="Label_FileFormat"
+			ToolTip="File Format" />
+		<Label
+			HorizontalContentAlignment="Center"
+			FontWeight="Bold"
+			FontSize="23"
+			Foreground="#FFFFFFFF"
+			Content="名前:"
+			x:Name="Label_Name"
+			ToolTip="Name"
+			Grid.Column="0"
+			Grid.Row="0"
+			VerticalAlignment="Stretch"
+			Width="199"
+			HorizontalAlignment="Right"
+			Margin="0,187,16,387" />
+		<Button
+			Content="Open Folder"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="314,580.8,0,0"
+			Width="120"
+			Height="26"
+			x:Name="Button_OpenFolder"
+			Click="OpenFolder_Dir_Button"
+			Cursor="Hand"
+			ContextMenuService.HasDropShadow="True"
+			Visibility="Hidden">
+			<Button.ContextMenu>
+				<ContextMenu
+					x:Name="Open_DIR"
+					StaysOpen="true">
+					<MenuItem
+						Header="Open Video"
+						Click="OpenDir_Video" />
+					<MenuItem
+						Header="Open Audio"
+						Click="OpenDir_Audio" />
+					<MenuItem
+						Header="Formatted">
+						<MenuItem
+							Header="m4a"
+							Click="OpenDir_mFourA" />
+						<MenuItem
+							Header="mp3"
+							Click="OpenDir_mpThree" />
+						<MenuItem
+							Header="mp4"
+							Click="OpenDir_mpFour" />
+						<MenuItem
+							Header="webm"
+							Click="OpenDir_webm" />
+					</MenuItem>
+				</ContextMenu>
+			</Button.ContextMenu>
+			<Button.Resources>
+				<Style
+					TargetType="Border"
+					BasedOn="{StaticResource RoundMe}" />
+			</Button.Resources>
+		</Button>
+		<ProgressBar
+			x:Name="ProgressBar_bar"
+			SmallChange="0"
+			Opacity="0.8"
+			FlowDirection="LeftToRight"
+			Foreground="#FF7F6EEF"
+			BorderBrush="#9AA1A1ED"
+			BorderThickness="1.5,1.5,1.5,2"
+			Background="#32C1C3FF"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Bottom"
+			Margin="15,0,0,7"
+			Width="419"
+			Height="27"
+			Value="0"
+			Visibility="Hidden">
+			<ProgressBar.Resources>
+				<Style
+					TargetType="ProgressBar">
+					<Setter
+						Property="Template">
+						<Setter.Value>
+							<ControlTemplate
+								TargetType="ProgressBar">
+								<Grid>
+									<Border
+										x:Name="PART_Track"
+										CornerRadius="10"
+										Background="{TemplateBinding Background}"
+										Margin="0,-1,0,1" />
+									<Border
+										x:Name="PART_Indicator"
+										CornerRadius="10"
+										HorizontalAlignment="Left"
+										Background="{TemplateBinding Foreground}"
+										Margin="0,-1,0,1" />
+								</Grid>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</ProgressBar.Resources>
+		</ProgressBar>
+	</Grid>
+</Window>

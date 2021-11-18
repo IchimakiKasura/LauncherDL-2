@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+
+    <!-- <OutputType>Exe</OutputType> -->
+    <OutputType>WinExe</OutputType>
+
+    <ApplicationIcon>img/meg.ico</ApplicationIcon>
+    <AssemblyName>uVAD</AssemblyName>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Copyright>2021</Copyright>
+    <Description>Downloads any audio or video</Description>
+    <Version>5.0.0</Version>
+    <Product>LauncherDL</Product>
+    <PackageId>LauncherDL</PackageId>
+    <Authors>Ichimaki Kasura</Authors>
+    <Company>Ichimaki Kasura</Company>
+    <Copyright>Copyright © 2021</Copyright>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="img/*.*" />
+  </ItemGroup>
+  <!-- <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" />
+  </ItemGroup> -->
+</Project>
