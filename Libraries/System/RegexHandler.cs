@@ -14,6 +14,6 @@ namespace launcherDL.regex
 
         // Fileformat
         public static Regex Info = new(@"(?<id>.*?) .*(?<format>mp4|webm|3gp|m4a.*?) *(?:(?<fullResolution>[0-9]*x[0-9]*)|(?<audioOnly>audio only)) *(?<fps>[0-9]*).\|.*?(?<size>.*)(?<Videobitrate>\D[0-9]*k).*?\|.*?", RegexOptions.Compiled);
-        public static Regex SelectedRes = new(@".*?:(?<name>.*?),.*:(?<size>.*?),", RegexOptions.Compiled);
+        public static Regex SelectedRes = new(@"\[.*\].*(?<name>(?:\D+.*p|audio only)).*-(?<size>.*?);", RegexOptions.Compiled);
     }
 }

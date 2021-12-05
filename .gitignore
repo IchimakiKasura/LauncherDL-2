@@ -1,3 +1,5 @@
 bin
 ffmpeg
 obj
+.fake
+.ionide

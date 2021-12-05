@@ -164,10 +164,10 @@ namespace launcherDL
                     switch (format)
                     {
                         case "mp4":
-                            id += "140";
+                            id += "+140";
                             break;
                         case "webm":
-                            id += "bestaudio";
+                            id += "+bestaudio";
                             break;
                     }
                 }
@@ -210,6 +210,7 @@ namespace launcherDL
             }
         }
     
+        // Not really part of the console output but i'll leave it here.
         private static void FormatAdder(dynamic options)
         {
             string format = options.format;

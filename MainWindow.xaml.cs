@@ -39,8 +39,10 @@ namespace launcherDL
         public bool ShowProgressBar;
         // checks if ffmpeg exist
         public static bool isFfmpegExist;
-        // Playlist?
-        public bool isPlaylist;
+        // Playlist? COnfig
+        public static bool isPlaylistConfig; 
+
+        public static bool isPlaylist = isPlaylistConfig;
         #endregion
 
         #region process start vars
@@ -183,7 +185,8 @@ namespace launcherDL
             ProgressBar_bar.Visibility = Visibility.Hidden;
             ProgressBar_bar.Value = 0;
             LauncherDL_InputButtons.EnableAllComponents();
-            isPlaylist = true;
+
+            if(isPlaylistConfig) isPlaylist = true;
 
             // Renaming process
             if(TemporaryEncodedName != string.Empty)

@@ -1,1 +1,7 @@
-{"DefaultOutput":"output","DefaultFileTypeOnStartUp":0,"ShowSystemOutput":true,"ShowProgressBar":true,"EnablePlayList":true}
+{
+  "DefaultOutput": "output",
+  "DefaultFileTypeOnStartUp": 0,
+  "ShowSystemOutput": true,
+  "ShowProgressBar": true,
+  "EnablePlayList": false
+}

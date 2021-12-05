@@ -23,10 +23,10 @@ namespace launcherDL
                 urlHost = LauncherDL_regexClass.URLname.Match(url.Host).Groups["host"].ToString();
                 urlPath = url.PathAndQuery;
 
-                if(urlPath.Contains("&list=") && _main.isPlaylist)
+                if(urlPath.Contains("&list=") && isPlaylistConfig)
                 {
                     var box = MessageBox.Show("Are you sure to download all the playlist? ","Yow",MessageBoxButton.YesNoCancel, MessageBoxImage.Exclamation);
-                    if(box == MessageBoxResult.No) _main.isPlaylist = false;
+                    if(box == MessageBoxResult.No) isPlaylist = false;
                     if(box == MessageBoxResult.Cancel) 
                     {
                         _main.RichTextBox_Console.AddFormattedText("<Yellow>[INFO] <>Operation cancelled!");
@@ -69,8 +69,8 @@ namespace launcherDL
             {
                 FileFormat = _main.TemporaryFormatList[_main.Input_FileFormat.SelectedIndex];
                 string selected = _main.Input_FileFormat.Text;
-                string name = LauncherDL_regexClass.SelectedRes.Match(selected).Groups["name"].ToString();
-                string size = LauncherDL_regexClass.SelectedRes.Match(selected).Groups["size"].ToString().Trim();
+                string name = LauncherDL_regexClass.SelectedRes.Match(selected).Groups["name"].Value;
+                string size = LauncherDL_regexClass.SelectedRes.Match(selected).Groups["size"].Value.Trim();
                 FileFormatName = $"{name} [{size}]";
             } else
             {
@@ -111,7 +111,7 @@ namespace launcherDL
                     else processString = YTD.Ydl_Download(link, Name);
                     break;
             }
-            if(!_main.isPlaylist) processString = processString + " --no-playlist";
+            if(!isPlaylist) processString = processString + " --no-playlist";
             _main.StartProcess(processString);
         }
 

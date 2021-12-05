@@ -35,7 +35,7 @@ namespace launcherDL
             _main.defaultOutput = loadConfig.DefaultOutput;
             _main.outputSystemConsole = loadConfig.ShowSystemOutput;
             _main.ShowProgressBar = loadConfig.ShowProgressBar;
-            _main.isPlaylist = loadConfig.EnablePlayList;
+            isPlaylistConfig = loadConfig.EnablePlayList;
             _main.outputFolder = Directory.Exists(_main.defaultOutput);
 
             if(_main.outputSystemConsole) _main.RichTextBox_Console.AddFormattedText("<#a85192>[SYSTEM] <Gray>FileFormat Default: <#7f7aff>\"best\"");

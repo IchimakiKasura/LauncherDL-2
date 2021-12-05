@@ -1,3 +1,5 @@
+using System.Text;
+using System.Xml;
 using System.Text.Json;
 
 namespace launcherDL.configuration
@@ -59,8 +61,22 @@ namespace launcherDL.configuration
                 ShowProgressBar = json.ShowProgressBar;
                 EnablePlayList = json.EnablePlayList;
 
-                var data = JsonSerializer.Serialize(json);
-                byte[] info = new UTF8Encoding(true).GetBytes(data);
+                using var data = JsonDocument.Parse(JsonSerializer.Serialize(json), new(){ AllowTrailingCommas = true });
+                
+                MemoryStream stream = new();
+                using (
+                    var utf8JsonWriter = new Utf8JsonWriter(
+                        stream,
+                        new JsonWriterOptions
+                        {
+                            Indented = true
+                        }
+                    )
+                )
+
+                data.WriteTo(utf8JsonWriter);
+
+                byte[] info = new UTF8Encoding(true).GetBytes(new UTF8Encoding().GetString(stream.ToArray()));
                 FileStream fs = File.Create("config.json");
                 fs.Write(info, 0, info.Length);
             }
